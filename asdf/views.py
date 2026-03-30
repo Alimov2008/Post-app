@@ -1,7 +1,8 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from asdf.models import Post
+
+from .forms import PostForm
 
 
 def home(request):
@@ -15,3 +16,14 @@ def about(request):
 def posts(request):
     posts = Post.objects.all()
     return render(request, "asdf/posts.html", {"posts": posts})
+
+
+def create_post(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("posts")
+    else:
+        form = PostForm()
+    return render(request, "asdf/create_post.html", {"form": form})
