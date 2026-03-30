@@ -30,7 +30,7 @@ def create_post(request):
 
 
 def update_post(request, id):
-    post = get_object_or_404(Post, id)
+    post = get_object_or_404(Post, id=id)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
