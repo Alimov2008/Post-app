@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from asdf.models import Post
 
@@ -27,3 +27,15 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, "asdf/create_post.html", {"form": form})
+
+
+def update_post(request, id):
+    post = get_object_or_404(Post, id)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect("posts")
+    else:
+        form = PostForm(instance=post)
+    return render(request, "asdf/update_post.html", {"form": form})
