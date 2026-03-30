@@ -6,6 +6,6 @@
 <h1>{{post.title}}</h1>
 <h2>{{post.body}}</h2>
 <h3>{{post.created_at}}</h3>
-<a href="{%url 'update_post' post.id%}">update</a> | 
+<a href="{%url 'update_post' post.id%}">update</a> | <a href="{%url 'delete_post' post.id%}">delete</a>
 {%endfor%}
 {%endblock%}

@@ -8,4 +8,5 @@ urlpatterns = [
     path("posts/", views.posts, name="posts"),
     path("create/", views.create_post, name="create_post"),
     path("posts/<int:id>/update", views.update_post, name="update_post"),
+    path("post/<int:id>/delete", views.delete_post, name="delete_post"),
 ]

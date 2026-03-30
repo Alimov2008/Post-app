@@ -39,3 +39,11 @@ def update_post(request, id):
     else:
         form = PostForm(instance=post)
     return render(request, "asdf/update_post.html", {"form": form})
+
+
+def delete_post(request, id):
+    post = get_object_or_404(Post, id=id)
+    if request.method == "POST":
+        post.delete()
+        return redirect("posts")
+    return render(request, "asdf/delete_post.html", {"post": post})
