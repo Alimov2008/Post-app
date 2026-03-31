@@ -1,15 +1,9 @@
 {%extends 'asdf/base.html'%}
 
 {%block content%}
-<a href="{%url 'create_post'%}">Create post</a>
-<br>
-<a href="{%url 'my_posts'%}">my posts</a>
-<br>
-<br>
 {%for post in posts%}
 <a href="{%url 'post_details' post.id%}">{{post.title}}</a>
 <h2>{{post.body}}</h2>
 <h3>{{post.created_at}}</h3>
-<h3>{{post.author}}</h3>
 {%endfor%}
 {%endblock%}S

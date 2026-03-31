@@ -31,6 +31,12 @@ def post_details(request, id):
 
 
 @login_required
+def my_posts(request):
+    posts = Post.objects.filter(author=request.user)
+    return render(request, "asdf/my_posts.html", {"posts": posts})
+
+
+@login_required
 def create_post(request):
     if request.method == "POST":
         form = PostForm(request.POST)
