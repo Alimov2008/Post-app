@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 
 from asdf.models import Post
@@ -44,6 +45,8 @@ def create_post(request):
 @login_required
 def update_post(request, id):
     post = get_object_or_404(Post, id=id)
+    if post.author != request.user:
+        return HttpResponseForbidden("you are not the creator of this post")
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -57,6 +60,8 @@ def update_post(request, id):
 @login_required
 def delete_post(request, id):
     post = get_object_or_404(Post, id=id)
+    if post.author != request.user:
+        return HttpResponseForbidden("you are not creator on this post")
     if request.method == "POST":
         post.delete()
         return redirect("posts")
