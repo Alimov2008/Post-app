@@ -18,6 +18,11 @@ def posts(request):
     return render(request, "asdf/posts.html", {"posts": posts})
 
 
+def post_details(request, id):
+    post = get_object_or_404(Post, id=id)
+    return render(request, "asdf/post_details.html", {"post": post})
+
+
 def create_post(request):
     if request.method == "POST":
         form = PostForm(request.POST)

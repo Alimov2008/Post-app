@@ -2,10 +2,11 @@
 
 {%block content%}
 <a href="{%url 'create_post'%}">Create post</a>
+<br>
+<br>
 {%for post in posts%}
-<h1>{{post.title}}</h1>
+<a href="{%url 'post_details' post.id%}">{{post.title}}</a>
 <h2>{{post.body}}</h2>
 <h3>{{post.created_at}}</h3>
-<a href="{%url 'update_post' post.id%}">update</a> | <a href="{%url 'delete_post' post.id%}">delete</a>
 {%endfor%}
-{%endblock%}
+{%endblock%}S
