@@ -1,10 +1,12 @@
-{%extends 'asdf/base.html'%}
+{% extends 'asdf/base.html' %}
 
-{%block content%}
-<h1>Create Post</h1>
-    <form  method="post">
-        {%csrf_token%}
-        {{form.as_p}}
-        <button type="submit">Submit</button>
+{% block content %}
+<div class="container mt-4">
+    <h1>Create Post</h1>
+    <form method="post" class="mt-3">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-{%endblock%}
+</div>
+{% endblock %}

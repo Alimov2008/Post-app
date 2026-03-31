@@ -1,11 +1,19 @@
-{%extends 'asdf/base.html'%}
+{% extends 'asdf/base.html' %}
 
-{%block content%}
- 
-<h1>{{post.title}}</h1>
-<h2>{{post.body}}</h2>
-<h3>{{post.created_at}}</h3>
-<h3>created by {{post.author}}</h3>
-<br>
-<a href="{%url 'update_post' post.id%}">update</a> | <a href="{%url 'delete_post' post.id%}">delete</a>
-{%endblock%}
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">{{ post.title }}</h1>
+            <p class="card-text">{{ post.body }}</p>
+            <p class="card-text">
+                <small class="text-muted">Created at: {{ post.created_at }}</small><br>
+                <small class="text-muted">Author: {{ post.author }}</small>
+            </p>
+            <a href="{% url 'update_post' post.id %}" class="btn btn-primary">Update</a>
+            <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'posts' %}" class="btn btn-secondary">Back to Posts</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

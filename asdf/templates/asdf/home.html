@@ -1,20 +1,17 @@
-{%extends 'asdf/base.html'%}
+{% extends 'asdf/base.html' %}
 
-{%block content%}
-<h1>Home page</h1>
-{%if user.is_authenticated%}
-
-<h2>hello {{user.username}}</h2>
-
-<form action="{%url 'logout'%}" method="post">
-    {%csrf_token%}
-    <button type="submit">Logout</button>
-</form>
-
-{%else%}
-<a href="{%url 'login'%}">Login</a>
-<br>
-<a href="{%url 'signup'%}">sign up</a>
-{%endif%}
-
-{%endblock%}
+{% block content %}
+<div class="container mt-4">
+    <h1>Home page</h1>
+    {% if user.is_authenticated %}
+        <h2>Hello {{ user.username }}</h2>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        <a href="{% url 'signup' %}" class="btn btn-secondary">Sign up</a>
+    {% endif %}
+</div>
+{% endblock %}

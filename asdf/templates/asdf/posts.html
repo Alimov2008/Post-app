@@ -1,15 +1,31 @@
-{%extends 'asdf/base.html'%}
+{% extends 'asdf/base.html' %}
 
-{%block content%}
-<a href="{%url 'create_post'%}">Create post</a>
-<br>
-<a href="{%url 'my_posts'%}">my posts</a>
-<br>
-<br>
-{%for post in posts%}
-<a href="{%url 'post_details' post.id%}">{{post.title}}</a>
-<h2>{{post.body}}</h2>
-<h3>{{post.created_at}}</h3>
-<h3>{{post.author}}</h3>
-{%endfor%}
-{%endblock%}S
+{% block content %}
+<div class="container mt-4">
+    <h1>All Posts</h1>
+    <div class="mb-3">
+        <a href="{% url 'create_post' %}" class="btn btn-success">Create post</a>
+        <a href="{% url 'my_posts' %}" class="btn btn-info">My posts</a>
+    </div>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'post_details' post.id %}">{{ post.title }}</a>
+                    </h5>
+                    <p class="card-text">{{ post.body|truncatewords:30 }}</p>
+                    <p class="card-text">
+                        <small class="text-muted">Created at: {{ post.created_at }}</small><br>
+                        <small class="text-muted">Author: {{ post.author }}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No posts available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
