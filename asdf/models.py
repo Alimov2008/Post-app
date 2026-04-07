@@ -7,3 +7,4 @@ class Post(models.Model):
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="posts/", blank=True, null=True)
