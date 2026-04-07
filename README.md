@@ -1,1 +1,1 @@
-Simple django post sharing app
+Simple Django FVB post app
